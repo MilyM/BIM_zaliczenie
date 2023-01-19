@@ -10,8 +10,8 @@ print(f'Liczba ścian {walls_number}')
 
 external_walls = []
 
-# pset = ifc_u.element.get_psets(walls[0])
-# print(pset['Pset_WallCommon']['IsExternal'])
+# pset = ifc.util.element.get_psets(walls[0])
+# print(pset)
 
 
 for each in walls:
@@ -23,3 +23,11 @@ for each in walls:
 
 external_walls_number = len(external_walls)
 print(f'Liczba ścian zewnętrznych {external_walls_number}')
+
+total_volume = 0
+
+for each in external_walls:
+    pset = ifc.util.element.get_psets(each)
+    total_volume += float(pset[None]['NetVolume'])
+
+print(f'Całkowita objętość ścian zewnętrznych {total_volume:.2f}')
